@@ -1,0 +1,1 @@
+from.vae_1d import AutoencoderKLTemporalDecoder1d

@@ -1,0 +1,1 @@
+from .pipeline_stable_video_diffusionPOSE_IT2V import StableVideoDiffusionPOSE_IT2VPipeline1D

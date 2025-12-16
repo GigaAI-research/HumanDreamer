@@ -25,10 +25,44 @@ Training pipeline of the proposed *Text-to-Pose* generation. Pose data are encod
 
 ![pose2video](./assets/pose2video.png) -->
 # Project Status
-- [2025/4/5]： ✅Repository Initialization.
-- [2025/6/14]： ✅Release MotionVid dataset.
-- 🛠️TODO: Release code.
+- ✅Release MotionVid dataset.
+- ✅Release train and inference code.
 ---
+## Environment Setup
+To set up the environment, run the following commands:
+```bash
+conda create -n humandreamer python=3.10
+conda activate humandreamer
+pip install -r requirements.txt
+```
+
+## Download Model and Dataset
+1. Download the MotionVid dataset from [Hugging Face](https://huggingface.co/datasets/chuanshuogushi/MotionVid).
+2. Download the model checkpoint from [Hugging Face](https://huggingface.co/chuanshuogushi/HumanDreamer).
+3. Place the model checkpoint files in your specified `exp_root_path`.
+
+## Configuration Adjustments
+Make the following changes to the configuration files:
+1. Modify `batch_size_per_gpu` in `giga-train/gt_projects/motiondit/configs/YOUR_CONFIG.py` to match your GPU memory.
+2. Modify `exp_root_path` in the same file to your desired path.
+3. Modify dataset root path in `giga-train/gt_projects/motiondit/configs/dataset_path_list.py` to point to your dataset location.
+4. Modify `tmr_weight_path` in `giga-train/gt_projects/motiondit/motiondit/dit_trainer.py`.
+5. Modify `clip_path` in `giga-train/gt_projects/motiondit/motiondit/dit_trainer.py` and `giga-train/gt_projects/motiondit/motiondit/dit_tester.py`.
+6. Modify path in `giga-train/gt_projects/motiondit/scripts/paths.py` to your project path.
+
+
+## Training MotionDiT
+To train the model, execute:
+```bash
+cd giga-train/gt_projects/motiondit/scripts
+python launch.py --stages train
+```
+
+## Inference MotionDiT
+To test the model, execute:
+```bash
+python launch.py --stages test
+```
 
 # MotionVid Dataset
 MotionVid is a dataset containing 1.2M text-pose-video pairs. The videos are sourced from the internet and public datasets, the poses are extracted using [DWPose](https://github.com/IDEA-Research/DWPose), and the text descriptions are generated using [ShareGPT4Video](https://github.com/ShareGPT4Omni/ShareGPT4Video).
@@ -58,40 +92,6 @@ dataset = load_dataset('path/to/motionvid/subset0')
 print(dataset[0].keys())
 ``` -->
 
-<!-- # Code Release
-## MotionDiT
-Under reconstrucion.
-### Train
-### Inference
-## PoseVAE
-## CLoP -->
----
-
-<!-- ## Installation
-****
-### Requirements
-
-- Python 3.9+
-- PyTorch 2.x
-- CUDA-capable GPU
-- Other dependencies listed in `requirements.txt` -->
-
-<!-- ### Setup
-
-```bash
-# Clone the repo
-git clone https://github.com/yourname/humandreamer.git 
-cd humandreamer
-
-# Install dependencies
-pip install -r requirements.txt
-
-# (Optional) Setup virtual environment
-python -m venv venv && source venv/bin/activate
-
-
---- -->
-
 ## License
 All the data and code within this repo are under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
@@ -104,3 +104,5 @@ All the data and code within this repo are under [CC BY-NC-SA 4.0](https://creat
   journal={arXiv preprint arXiv:2503.24026},
   year={2025}
 }
+```
+

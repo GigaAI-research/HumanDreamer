@@ -1,0 +1,2 @@
+from .pipeline_dwpose import DWposePipeline
+from .pipeline_openpose import OpenPosePipeline

@@ -1,0 +1,13 @@
+basicsr
+compel
+controlnet-aux
+diffusers
+imageio
+imageio-ffmpeg
+insightface
+langchain
+opencv-python
+realesrgan
+segment-anything
+tomesd
+transformers
